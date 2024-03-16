@@ -1,4 +1,4 @@
-import http from "../ToDo/http-common";
+import http from "../shared/http-common";
 import { ITodo } from "./Todo.const";
 
 class TodoService {

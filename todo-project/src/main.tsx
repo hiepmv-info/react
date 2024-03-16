@@ -4,11 +4,12 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Login from './Auth/Login.tsx'
 import Register from './Auth/Register.tsx'
+import ProtectedRoute from './ProtectedRoute.tsx' // import ProtectedRoute
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <App />
+        element: <ProtectedRoute isAuth={true} target="/login"><App /></ProtectedRoute>
     },
     {
         path: 'login',

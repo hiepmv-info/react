@@ -1,6 +1,6 @@
-import { FormShareModalBlockColumn } from "../shared/FormShare.const";
+import { FormShareBlockColumn } from "../shared/FormShare.const";
 
-export const login: FormShareModalBlockColumn = {
+export const loginBlockColumn: FormShareBlockColumn = {
     title: "Login",
     row: [
         {
@@ -8,17 +8,24 @@ export const login: FormShareModalBlockColumn = {
             property: "email",
             type: "email",
             validation: ["required", "email"],
+            placeholder: "Email Address"
         },
         {
             title: "Password",
             property: "password",
             type: "password",
             validation: ["required"],
+            placeholder: "Password"
         },
     ],
+    redirect: {
+        title: "Register",
+        link: "/register"
+    },
+    button: "Login",
 };
 
-export const register: FormShareModalBlockColumn = {
+export const registerBlockColumn: FormShareBlockColumn = {
     title: "Register",
     row: [
         {
@@ -26,24 +33,56 @@ export const register: FormShareModalBlockColumn = {
             property: "name",
             type: "text",
             validation: ["required"],
+            placeholder: "Full Name"
         },
         {
             title: "Email",
             property: "email",
             type: "email",
             validation: ["required", "email"],
+            placeholder: "Email Address"
         },
         {
             title: "Password",
             property: "password",
             type: "password",
-            validation: ["required"],
+            validation: ["required", "password"],
+            placeholder: "Password"
         },
         {
             title: "Confirm Password",
             property: "confirmPassword",
-            type: "confirmPassword",
-            validation: ["required"],
+            type: "password",
+            validation: ["required", "confirmPassword"],
+            placeholder: "Confirm Password"
         }
     ],
+    redirect: {
+        title: "Login",
+        link: "/login"
+    },
+    button: "Register",
 };
+
+export interface LoginModel {
+    email: string;
+    password: string;
+}
+
+export interface RegisterModel {
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
+
+export interface AuthResponse {
+    accessToken: string;
+    refreshToken: string;
+    expiresIn: string;
+    user: {
+        id: string;
+        name: string;
+        email: string;
+    }
+}

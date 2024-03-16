@@ -25,7 +25,7 @@ const ModalTodo = React.memo(({ todo, onClose, column, onSubmit }: ModalTodoProp
                     <input
                         {...field}
                         type="text"
-                        className={`${errors[item.property] ? "border-red-700" : ""
+                        className={`${errors[item.property] ? "border-error" : ""
                             } block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                         placeholder="Type todo title"
                     />
@@ -33,7 +33,7 @@ const ModalTodo = React.memo(({ todo, onClose, column, onSubmit }: ModalTodoProp
                     <textarea
                         {...field}
                         rows={4}
-                        className={`${errors[item.property] ? "border-red-700" : ""
+                        className={`${errors[item.property] ? "border-error" : ""
                             } block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                         placeholder="Write todo description here"
                     ></textarea>
@@ -67,6 +67,8 @@ const ModalTodo = React.memo(({ todo, onClose, column, onSubmit }: ModalTodoProp
     },
         [control, errors]
     );
+    
+    const onSubmitCallback = React.useCallback((data: any) => onSubmit(data), [onSubmit]);
 
     return (
         <div
@@ -104,7 +106,7 @@ const ModalTodo = React.memo(({ todo, onClose, column, onSubmit }: ModalTodoProp
                     </div>
                     {isEditMode ? (
                         <>
-                            <form className="p-4 md:p-5" onSubmit={handleSubmit(onSubmit)}>
+                            <form className="p-4 md:p-5" onSubmit={handleSubmit(onSubmitCallback)}>
                                 <div className="grid gap-4 mb-4 grid-cols-2">
                                     {column.row.map((item, id) => (
                                         <div key={id} className="col-span-2">

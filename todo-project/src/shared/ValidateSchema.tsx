@@ -14,20 +14,7 @@ export function validateSchema(column: any) {
             validator = yup.string().email('Must be a valid email');
         } else if (item.type === 'url') {
             validator = yup.string().url('Must be a valid URL');
-        } else if (item.type === 'password') {
-            validator = yup.string()
-                .required('This field is required')
-                .min(8, 'This field must be at least 8 characters')
-                .matches(/(?=.*[0-9])/, 'This field must contain at least one number')
-                .matches(/(?=.*[a-z])/, 'This field must contain at least one lowercase letter')
-                .matches(/(?=.*[A-Z])/, 'This field must contain at least one uppercase letter')
-                .matches(/(?=.*[!@#$%^&*])/, 'This field must contain at least one special character');
-        } else if (item.type === 'confirmPassword') {
-            password = yup.ref('password');
-            validator = yup.string()
-                .oneOf([password, null], 'Passwords must match');
-        }
-        else {
+        } else {
             validator = yup.string();
         }
 
@@ -48,6 +35,14 @@ export function validateSchema(column: any) {
                 } else if (validation.startsWith('matches')) {
                     const regex = new RegExp(validation.split(':')[1]);
                     validator = validator.matches(regex, 'Does not match the required pattern');
+                } else if (validation === 'password') {
+                    validator = validator.matches(/(?=.*[0-9])/, 'This field must contain at least one number')
+                        .matches(/(?=.*[a-z])/, 'This field must contain at least one lowercase letter')
+                        .matches(/(?=.*[A-Z])/, 'This field must contain at least one uppercase letter')
+                        .matches(/(?=.*[!@#$%^&*])/, 'This field must contain at least one special character');
+                } else if (validation === 'confirmPassword') {
+                    password = yup.ref('password');
+                    validator = validator.oneOf([password, null], 'Passwords must match');
                 }
             }
         });

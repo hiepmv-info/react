@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 
 from app.core.config import settings
 from app.db.migrate_db import create_all_or_upgrade_db
-from app.router import todo_list_router
+from app.router import auth_router, todo_list_router
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -33,4 +33,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(todo_list_router.router)
+app.include_router(auth_router.router)
 

@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import ListToDo from "./ListToDo/ListToDo";
 import Search from "./SearchBox/Search";
 import TodoService from "./Todo.service";
 import { ITodo, StatusEnum, modalBlockColumnsCreate, modalBlockColumnsEdit, modalBlockColumnsView } from "./Todo.const";
 import ModalTodo from "./ModalToDo/ModalTodo";
+import Cookies from 'js-cookie';
 
 function ToDo() {
     const [search, setSearch] = useState('');
@@ -17,6 +18,11 @@ function ToDo() {
         done: false
     });
     const [openModal, setOpenModal] = useState(false);
+
+    const userName = useMemo(() => (
+        JSON.parse(Cookies.get('user') as string).name
+    ), []);
+
 
     const fetchListTodo = useCallback(async (search: string) => {
         try {
@@ -63,6 +69,7 @@ function ToDo() {
     return (
         <>
             <Search setSearch={setSearch} setModalMode={setModalMode} setOpenModal={setOpenModal} setSelectedTodo={setSelectedTodo} />
+            <p className="text-center text-2xl font-bold text-gray-800 mt-16 dark:text-gray-200">Hello {userName}</p>
             <ListToDo listTodo={listTodo} setModalMode={setModalMode} setSelectedTodo={setSelectedTodo} setOpenModal={setOpenModal} />
             {openModal && <ModalTodo onSubmit={(todo) => handleTodo(modalMode, todo)} todo={selectedTodo} open={openModal} onClose={() => setOpenModal(false)}
                 column={getModalColumns()} />}
