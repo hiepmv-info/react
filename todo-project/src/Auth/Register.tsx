@@ -4,6 +4,7 @@ import { RegisterModel, registerBlockColumn } from "./Auth.const";
 import AuthService from "./Auth.service";
 
 function Register() {
+    console.log('Register');
     const register = registerBlockColumn;
     const navigate = useNavigate();
 

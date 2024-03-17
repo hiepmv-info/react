@@ -14,6 +14,7 @@ function Search({
     setSelectedTodo: React.Dispatch<React.SetStateAction<ITodo>>;
     setModalMode: React.Dispatch<React.SetStateAction<string>>;
 }) {
+    console.log('Search');
     const [inputValue, setInputValue] = useState("");
 
     const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {

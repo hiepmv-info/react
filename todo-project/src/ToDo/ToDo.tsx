@@ -7,6 +7,7 @@ import ModalTodo from "./ModalToDo/ModalTodo";
 import Cookies from 'js-cookie';
 
 function ToDo() {
+    console.log('ToDo');
     const [search, setSearch] = useState('');
     const [listTodo, setListTodo] = useState([]);
     const [modalMode, setModalMode] = useState('');

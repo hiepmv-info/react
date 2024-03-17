@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const getDefaultValues = (column: FormShareBlockColumn) => column.row.reduce((prev, curr) => ({ ...prev, [curr.property]: '' }), {});
 
 const FormShare = memo(({ column, onSubmit }: FormShareProps) => {
+    console.log('FormShare');
     const schema = useMemo(() => validateSchema(column), [column]);
     const defaultValues = useMemo(() => getDefaultValues(column), [column]);
     const { control, handleSubmit, formState: { errors } } = useForm<any>({

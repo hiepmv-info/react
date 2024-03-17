@@ -1,8 +1,8 @@
 import Cookies from 'js-cookie';
 
-function setCookie(name: string, value: string | object, expiresIn: string) {
+function setCookie(name: string, value: string | object) {
     Cookies.set(name, typeof value === 'object' ? JSON.stringify(value) : value, 
-        { expires: new Date(expiresIn), secure: true, sameSite: 'strict' });
+        { secure: true, sameSite: 'strict' });
 }
 
 export default setCookie;

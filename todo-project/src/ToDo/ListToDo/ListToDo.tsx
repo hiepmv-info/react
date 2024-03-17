@@ -6,6 +6,7 @@ function ListToDo({ listTodo, setModalMode, setSelectedTodo, setOpenModal }: {
     setSelectedTodo: React.Dispatch<React.SetStateAction<ITodo>>,
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
 }) {
+    console.log('ListToDo');
     const handleTodoClick = useCallback((todo: ITodo, mode: string, openModal: boolean) => {
         setModalMode(mode);
         setSelectedTodo(todo);

@@ -5,6 +5,7 @@ import { validateSchema } from "../../shared/ValidateSchema";
 import React, { useMemo } from "react";
 
 const ModalTodo = React.memo(({ todo, onClose, column, onSubmit }: ModalTodoProps) => {
+    console.log('ModalTodo');
     const isEditMode = column.mode === "edit" || column.mode === "create";
 
     const schema = useMemo(() => validateSchema(column), [column]);
