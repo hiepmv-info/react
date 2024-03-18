@@ -3,7 +3,12 @@ import { LoginModel, RegisterModel } from "./Auth.const";
 
 class AuthService {
     login(data: LoginModel) {
-        return http.post("/auth/login", data);
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+        return http.post("/auth/login", data, config);
     }
 
     register(data: RegisterModel) {

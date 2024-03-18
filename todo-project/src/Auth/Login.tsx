@@ -11,9 +11,12 @@ function Login() {
     const navigate = useNavigate();
 
     const onSubmit = (data: LoginModel) => {
+        const formData = new FormData();
+        formData.append('email', data.username);
+        formData.append('password', data.password);
         AuthService.login(data).then((response: AxiosResponse<AuthResponse>) => {
-            setCookie('token', response.data.accessToken);
-            setCookie('user', response.data.user);
+            setCookie('token', response.data['access_token'], 3);
+            setCookie('user', response.data.user, 3);
             navigate("/");
         }).catch((error) => {
             console.log(error);

@@ -5,7 +5,7 @@ export const loginBlockColumn: FormShareBlockColumn = {
     row: [
         {
             title: "Email",
-            property: "email",
+            property: "username",
             type: "email",
             validation: ["required", "email"],
             placeholder: "Email Address"
@@ -65,7 +65,7 @@ export const registerBlockColumn: FormShareBlockColumn = {
 };
 
 export interface LoginModel {
-    email: string;
+    username: string;
     password: string;
 }
 
@@ -77,7 +77,7 @@ export interface RegisterModel {
 }
 
 export interface AuthResponse {
-    accessToken: string;
+    access_token: string;
     user: {
         id: string;
         name: string;

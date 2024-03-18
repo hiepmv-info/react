@@ -22,3 +22,10 @@ class ToDo(Base):
     
     # status = relationship("Status", backref=backref("todos", cascade="all, delete-orphan"))
     
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String(20), index=True)
+    email = Column(String(50), index=True)
+    password = Column(String(255), index=True)
